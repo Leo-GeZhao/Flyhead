@@ -10,7 +10,8 @@ import './placeDetails.css'
 
 const PlaceDetails = ({place, selected, refProp}) => {
 
-  if(selected) refProp?.current?.scrollIntoView({behavior:"smooth",block:"start"})
+  if (selected) refProp?.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  // console.log(refProp)
   
   return (
         <div className='card border-light p-2'>

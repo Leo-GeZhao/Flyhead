@@ -8,10 +8,11 @@ const List = ({places,childClick, isLoading, type, setType, rating, setRating}) 
 
 const [elRefs, setElRefs] = useState([])
 
-useEffect(()=> {
-  const refs = Array(places?.length).fill().map((_, i)=> elRefs[i] || createRef())
-  setElRefs(refs)
-},[places])
+useEffect(() => {
+  setElRefs((refs) => Array(places.length).fill().map((_, i) => refs[i] || createRef()));
+}, [places]);
+
+console.log(childClick)
   
   return (
     <div className='classes.container'>
@@ -48,7 +49,7 @@ useEffect(()=> {
 
       <div className="mt-4 ">
         {places?.map((place,i)=>(
-            <div className='mt-3'>
+            <div className='mt-3' ref={elRefs[i]} key={i}>
               <PlaceDetails 
                 place={place}
                 selected={Number(childClick) === i}

@@ -6,6 +6,7 @@
 .marker__container {
     position: absolute;
     z-index: 1; 
+    cursor: pointer;
 }
 
 .marker__container:hover {
