@@ -24,6 +24,9 @@ html body {
 main{
     flex:1;
     margin:1.5rem;
+    display: grid;
+    grid-template-columns: 32% 63%;
+    gap: 5%;
 }
 
 footer, nav {

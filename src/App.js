@@ -47,7 +47,7 @@ const App = () => {
         <CssBaseline/>
         <Header setCoordinates={setCoordinates}/>
         <main>
-          <Grid container spacing={3} style={{width:'100%'}}>
+          {/* <Grid container spacing={3} style={{width:'100%'}}>
               <Grid item xs={12} md={4}>
                   <List 
                   places={filteredPlaces.length? filteredPlaces : places}
@@ -68,7 +68,24 @@ const App = () => {
                   setChildClick={setChildClick}
                   />
               </Grid>
-          </Grid>
+          </Grid> */}
+                
+                    <List 
+                    places={filteredPlaces.length? filteredPlaces : places}
+                    childClick={childClick}
+                    isLoading={isLoading}
+                    type={type}
+                    setType={setType}
+                    rating={rating}
+                    setRating={setRating}
+                    />
+                    <Map 
+                    setCoordinates={setCoordinates} 
+                    setBounds={setBounds}
+                    coordinates={coordinates}
+                    places={filteredPlaces.length? filteredPlaces : places}
+                    setChildClick={setChildClick}
+                    />
         </main>
         <Footer/>
     </>
