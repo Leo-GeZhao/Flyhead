@@ -1,0 +1,28 @@
+.map__container {
+   height: 100vh; 
+   width: 100%;
+}
+
+.marker__container {
+    position: absolute;
+    z-index: 1; 
+}
+
+.marker__container:hover {
+    z-index: 2;
+    transform: translate(-5%, -5%);
+    transition: all 500ms ease;
+}
+
+.card-subtitle{
+    font-size: 0.7rem;
+}
+
+.card-top-img {
+    height: 4rem;
+    width: 100%;
+}
+
+.rating{
+    font-size: 20rem;
+}

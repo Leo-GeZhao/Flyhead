@@ -1,14 +1,9 @@
 import React, {useState, useEffect, createRef} from 'react'
-
-import { CircularProgress,Grid,Typography,InputLabel,MenuItem,FormControl,Select } from '@material-ui/core'
-
+import { CircularProgress} from '@material-ui/core'
 import PlaceDetails from '../PlaceDetails/PlaceDetails'
-
-import useStyles from './styles'
+import './list.css'
 
 const List = ({places,childClick, isLoading, type, setType, rating, setRating}) => {
-
-const classes = useStyles()
 
 
 const [elRefs, setElRefs] = useState([])
@@ -20,44 +15,48 @@ useEffect(()=> {
   
   return (
     <div className='classes.container'>
-      <Typography variant="h4">
-        Restaurents, Hotels & Attractions
-      </Typography>
+      <div className='border-bottom border-dark'>
+        <h3>
+          Restaurents, Hotels & Attractions
+        </h3>
+      </div>
       {isLoading ? (
-        <div className={classes.loading}>
+        <div className='loding__circle'>
           <CircularProgress size="5rem"/>
         </div>
       ) : (
         <>
+      <div className='d-flex justify-content-between'>
+        <div className='mt-3'>
+          <label htmlFor="type" className='fs-6'>Type</label>
+          <select className='form-select mt-2' name="type" value={type} onChange={(e)=> setType(e.target.value)}>
+            <option value="restaurants">Restaurants</option>
+            <option value="hotels">Hotels</option>
+            <option value="attractions">Attractions</option>
+          </select>
+        </div>
+        <div className='mt-3'>
+          <label htmlFor="rating" className='fs-6'>Rating</label>
+          <select className='form-select mt-2' name="type" value={rating} onChange={(e)=> setRating(e.target.value)}>
+            <option value={0}>All</option>
+            <option value={3}>Not Bad</option>
+            <option value={4}>Good</option>
+            <option value={4.5}>Excellent</option>
+          </select>
+        </div>
+      </div>
 
-      <FormControl className={classes.formControl}>
-        <InputLabel>Type</InputLabel>
-        <Select value={type} onChange={(e)=> setType(e.target.value)}>
-          <MenuItem value="restaurants">Restaurants</MenuItem>
-          <MenuItem value="hotels">Hotels</MenuItem>
-          <MenuItem value="attractions">Attractions</MenuItem>
-        </Select>
-      </FormControl>
-      <FormControl className={classes.formControl}>
-        <InputLabel>Rating</InputLabel>
-        <Select value={rating} onChange={(e)=> setRating(e.target.value)}>
-          <MenuItem value={0}>All</MenuItem>
-          <MenuItem value={3}>Not Bad</MenuItem>
-          <MenuItem value={4}>Good</MenuItem>
-          <MenuItem value={4.5}>Excellent</MenuItem>
-        </Select>
-      </FormControl>
-      <Grid container spacing={3} className={classes.list}>
+      <div className="mt-4 ">
         {places?.map((place,i)=>(
-          <Grid ref={elRefs[i]} item key={i} xs={12}>
-            <PlaceDetails 
-            place={place}
-            selected={Number(childClick) === i}
-            refProp = {elRefs[i]}
-            />
-          </Grid>
-        ))}
-      </Grid>
+            <div className='mt-3'>
+              <PlaceDetails 
+                place={place}
+                selected={Number(childClick) === i}
+                refProp = {elRefs[i]}
+                />
+            </div>
+          ))}
+      </div>
         </>
       )}
     </div>

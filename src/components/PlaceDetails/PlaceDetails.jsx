@@ -1,83 +1,63 @@
 import React from 'react'
-
-import {Box, Typography, Button, Card, CardMedia, CardContent, CardActions, Chip} from '@material-ui/core'
-import LocationOnIcon from '@material-ui/icons/LocationOn'
-import PhoneIcon from '@material-ui/icons/Phone'
 import Rating from '@material-ui/lab/Rating'
+import {HiLocationMarker} from 'react-icons/hi'
+import {BsTelephoneFill} from 'react-icons/bs'
 
-import useStyles from './styles'
+
+
+
+import './placeDetails.css'
 
 const PlaceDetails = ({place, selected, refProp}) => {
-
-  const classes = useStyles();
 
   if(selected) refProp?.current?.scrollIntoView({behavior:"smooth",block:"start"})
   
   return (
-    <Card elevation={6}>
-      <CardMedia 
-      style={{height:400}}
-      image={place.photo? place.photo.images.large.url : 'https://www.foodserviceandhospitality.com/wp-content/uploads/2016/09/Restaurant-Placeholder-001.jpg'}
-      title={place.name}
-      />
-      <CardContent>
-        <Typography gutterBottom variant="h5">
-          {place.name}
-        </Typography>
-        <Box display="flex" justifyContent="space-between" my={2}>
-          <Rating name="read-only" value={Number(place.rating)} readOnly />
-          <Typography component="legend">{place.num_reviews} review{place.num_reviews > 1 && 's'}</Typography>
-        </Box>
-        <Box display="flex" justifyContent="space-between">
-          <Typography variant="subtitle1">
-            Price
-          </Typography>
-          <Typography gutterBottom variant="subtitle1">
-            {place.price_level}
-          </Typography>
-        </Box>
-        <Box display="flex" justifyContent="space-between">
-          <Typography variant="subtitle1">
-            Ranking
-          </Typography>
-          <Typography gutterBottom variant="subtitle1">
-            {place.ranking}
-          </Typography>
-        </Box>
-          {place?.awards?.map((award)=> (
-            <Box my={1} display="flex" justifyContent="space-between" alignItems="center">
-              <img src={award.images.small} alt={award.display_name} />
-              <Typography variant="subtitle2" color="textSecondary">
-                {award.display_name}
-              </Typography>
-            </Box>
-          ))}
-          {place?.cuisine?.map(({name}) => (
-            <Chip key={name} size="small" label={name} className={classes.chip}/>
-          ))}
-          {place?.address && (
-            <Typography gutterBottom variant="subtitle2" color="textSecondary" className={classes.subtitle}>
-              <LocationOnIcon/> {place.address}
-            </Typography>
-          )}
-          {place?.phone && (
-            <Typography gutterBottom variant="subtitle2" color="textSecondary" className={classes.spacing}>
-              <PhoneIcon/> {place.phone}
-            </Typography>
-          )}
-          <CardActions>
-            <Button size="small" color="primary" onClick={()=> window.open(place.web_url, '_blank')}>
-              Trip Plan
-            </Button>
-            <Button size="small" color="primary" onClick={()=> window.open(place.website, '_blank')}>
-              Website
-            </Button>
-          </CardActions>
-        
-      </CardContent>
-
-      
-    </Card>
+        <div className='card border-light p-2'>
+          <img src={place.photo? place.photo.images.large.url : 'https://www.foodserviceandhospitality.com/wp-content/uploads/2016/09/Restaurant-Placeholder-001.jpg'} className='card-img-top' alt="" />
+          <h4 class="card-title">{place.name}</h4>
+          <div className='card-text d-flex justify-content-between mt-1'>
+            <Rating name="read-only" value={Number(place.rating)} readOnly />
+            <div>
+              <span className='review__num'>{place.num_reviews}</span> review{place.num_reviews > 1 && 's'}
+            </div>
+            
+          </div>
+          <div className='card-text d-flex justify-content-start mt-2'>
+            <div className='price'>
+              Price
+            </div> 
+            <div className='ms-2'>
+              {place.price_level}
+            </div>
+          </div>
+          <div className='card-text d-flex justify-content-start mt-2'>
+            <div className='price'>
+              Ranking
+            </div> 
+            <div className='ms-2'>
+              {place.ranking}
+            </div>
+          </div>
+          <div className='mt-1'>
+            {place?.cuisine?.map(({name}) => (
+              <div className='cuisin__name mb-2 me-2 px-2 py-1 rounded-pill'>{name}</div>
+            ))}
+          </div>
+            {place?.address && (
+              <div className='mt-1 card-text'>
+              <HiLocationMarker className='location__icon'/> {place.address}
+              </div>
+            )}
+            {place?.phone && (
+              <div className='mt-1 card-text'>
+                <BsTelephoneFill className='phone__icon'/> {place.phone}
+              </div>
+            )}
+            <div className='mt-2 ms-1'>
+              <a className="card-link" href={place.website} target="_blank" rel="noopener noreferrer">Website</a>
+            </div>
+        </div>
   );
 }
 

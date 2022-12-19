@@ -1,0 +1,8 @@
+input:placeholder-shown {
+    width: 11rem;
+    font-size: 0.8rem;
+  }
+
+.search__btn {
+    font-size: 1.6rem;
+}

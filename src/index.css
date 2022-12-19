@@ -1,0 +1,32 @@
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    list-style: none;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+:root {
+    --baby-blue: #89CFF0;
+    --black : #070606;
+    
+}
+
+html body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    color: var(--black);
+}
+
+main{
+    flex:1;
+    margin:1.5rem;
+}
+
+footer, nav {
+    background-color: var(--baby-blue);
+}
+

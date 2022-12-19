@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import Header from './components/Header/Header'
 import List from './components/List/List'
 import Map from './components/Map/Map'
+import Footer from './components/Footer/Footer'
 
 import { CssBaseline, Grid } from '@material-ui/core'
 
@@ -45,28 +46,31 @@ const App = () => {
     <>
         <CssBaseline/>
         <Header setCoordinates={setCoordinates}/>
-        <Grid container spacing={3} style={{width:'100%'}}>
-            <Grid item xs={12} md={4}>
-                <List 
-                places={filteredPlaces.length? filteredPlaces : places}
-                childClick={childClick}
-                isLoading={isLoading}
-                type={type}
-                setType={setType}
-                rating={rating}
-                setRating={setRating}
-                />
-            </Grid>
-            <Grid item xs={12} md={8}>
-                <Map 
-                setCoordinates={setCoordinates} 
-                setBounds={setBounds}
-                coordinates={coordinates}
-                places={filteredPlaces.length? filteredPlaces : places}
-                setChildClick={setChildClick}
-                />
-            </Grid>
-        </Grid>
+        <main>
+          <Grid container spacing={3} style={{width:'100%'}}>
+              <Grid item xs={12} md={4}>
+                  <List 
+                  places={filteredPlaces.length? filteredPlaces : places}
+                  childClick={childClick}
+                  isLoading={isLoading}
+                  type={type}
+                  setType={setType}
+                  rating={rating}
+                  setRating={setRating}
+                  />
+              </Grid>
+              <Grid item xs={12} md={8}>
+                  <Map 
+                  setCoordinates={setCoordinates} 
+                  setBounds={setBounds}
+                  coordinates={coordinates}
+                  places={filteredPlaces.length? filteredPlaces : places}
+                  setChildClick={setChildClick}
+                  />
+              </Grid>
+          </Grid>
+        </main>
+        <Footer/>
     </>
   )
 }

@@ -1,13 +1,10 @@
 import React, {useState} from 'react'
 import { Autocomplete } from '@react-google-maps/api'
-import { AppBar,Toolbar,Typography,InputBase,Box } from '@material-ui/core'
-import SearchIcon from '@material-ui/icons/Search'
-
-import useStyles from './styles';
+import {CiSearch} from 'react-icons/ci'
+import './header.css'
 
 
 const Header = ({setCoordinates}) => {
-  const classes = useStyles();
   const [autocomplete, setAutocomplete] = useState(null);
 
   const onLoad = (autoC) => setAutocomplete(autoC)
@@ -19,26 +16,19 @@ const Header = ({setCoordinates}) => {
   }
 
   return (
-    <AppBar position='static'>
-      <Toolbar className={classes.toolbar}>
-        <Typography variant="h5" className={classes.title}>
-          Travel Plan
-        </Typography>
-        <Box display="flex">
-          <Typography variant="h6" className={classes.title}>
-            Explore New Places
-          </Typography>
+    <>
+      <nav className='navbar navbar-expand-lg'>
+        <div className='container-fluid'>
+          <a className='navbar-brand ps-3' href="#">FlyHead</a>
           <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}>
-            <div className={classes.search}>
-              <div className={classes.searchIcon}>
-                <SearchIcon/>
-              </div>
-              <InputBase placeholder='Search...' className={{root:classes.inputRoot, input: classes.inputInput}}/>
-            </div>
+            <form class="d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="Your Next Destination" aria-label="Search"/>
+              <button class="btn border-0" disabled><CiSearch className='search__btn'/></button>
+            </form>
           </Autocomplete>
-        </Box>
-      </Toolbar>
-    </AppBar>
+        </div>
+      </nav>
+    </>
   )
 }
 

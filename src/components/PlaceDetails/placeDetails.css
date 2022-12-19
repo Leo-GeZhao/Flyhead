@@ -1,0 +1,19 @@
+.card-title, .review__num, .price  {
+    font-weight: 500;
+}
+
+.cuisin__name {
+    display: inline-block;
+    background-color: var(--baby-blue);
+    font-size: 0.8rem;
+}
+
+.location__icon {
+    font-size: 1.4rem;
+}
+
+.phone__icon {
+    font-size: 1.1rem;
+    margin-left: 0.3rem;
+}
+
