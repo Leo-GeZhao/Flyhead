@@ -19,7 +19,7 @@ const Header = ({setCoordinates}) => {
     <>
       <nav className='navbar navbar-expand-lg'>
         <div className='container-fluid'>
-          <a className='navbar-brand ps-3' href="#">FlyHead</a>
+          <a className='navbar-brand ps-3' href="/">FlyHead</a>
           <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}>
             <form class="d-flex" role="search">
               <input class="form-control me-2" type="search" placeholder="Your Next Destination" aria-label="Search"/>

@@ -14,20 +14,17 @@
     
 }
 
-html body {
+html, body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
     color: var(--black);
 }
 
-main{
-    flex:1;
-    margin:1.5rem;
-    display: grid;
-    grid-template-columns: 32% 63%;
-    gap: 5%;
+main {
+    flex: 1;
 }
+
 
 footer, nav {
     background-color: var(--baby-blue);

@@ -1,0 +1,10 @@
+.Landing__img {
+    height: 100vh;
+    object-fit: contain;
+    opacity: 0.9;
+}
+
+.landing {
+    display: grid;
+    grid-template-columns: 3fr  2fr;
+}
