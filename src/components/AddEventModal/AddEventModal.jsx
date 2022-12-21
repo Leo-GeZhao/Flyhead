@@ -9,8 +9,8 @@ import './addEventModal.css'
 const customStyles = {
     content: {
     top: '45%',
-    // right: 'auto',
-    // bottom: 'auto',
+    borderRadius:"1rem",
+    padding:'2rem 1rem'
     }
 }
 
@@ -37,7 +37,7 @@ const AddEventModal = ({isOpen, onClose, onEventAdded}) => {
     <div className=''>
         <Modal isOpen={isOpen} onRequestClose={onClose} style={customStyles}>
         <form onSubmit={onSubmit}>
-            <input type="text" placeholder='Add Event Title' value={title} onChange={e => setTitle(e.target.value)} />
+            <input type="text" className='form-control' placeholder='Add Event Title' value={title} onChange={e => setTitle(e.target.value)} />
         <div>
             <label htmlFor="" className='mt-2'>Start Date</label>
             <Datetime value={start} onChange={date => setStart(date)}/>

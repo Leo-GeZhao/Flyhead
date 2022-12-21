@@ -7,6 +7,7 @@ async function create(req,res,next){
         // const event = new Event(req.body)
         // console.log(req.body)
         const event = new Event()
+        console.log(req.body)
         event.title = req.body.title
         event.start = req.body.start
         event.end = req.body.end
