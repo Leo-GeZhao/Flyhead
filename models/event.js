@@ -14,8 +14,19 @@ const eventSchema = new Schema({
         type:Date,
         required:true
     },
-    category:{
-        type:String,
+    // backgroundColor:{
+    //     type:String,
+    // },
+    // borderColor:{
+    //     type:String,
+    // },
+    color:{
+        type:String
+    },
+    extendedProps:{
+        category:{
+            type:String,
+        }
     }
 },{
     timestamps:true

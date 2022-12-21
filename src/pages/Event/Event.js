@@ -7,6 +7,7 @@ import listPlugin from '@fullcalendar/list';
 import interactionPlugin from "@fullcalendar/interaction";
 import AddEventModal from '../../components/AddEventModal/AddEventModal';
 import * as eventApi from '../../utilities/api/event'
+import moment from 'moment'
 import './event.css'
 
 
@@ -19,12 +20,21 @@ const Event = () => {
     const [events, setEvents] = useState([])
     const calendarRef = useRef(null)
 
+ 
     const onEventAdded = event => {
+        console.log(event)
         const calendarApi = calendarRef.current.getApi()
-        calendarApi.addEvent(event)
+        calendarApi.addEvent({
+            title:event.title,
+            start:moment(event.start).toDate(),
+            end:moment(event.end).toDate(),
+            backgroundColor:event.color,
+            // borderColor:event.color,
+        })
     }
 
     const handleEventAdd = (data) => {
+        console.log(data.event)
         eventApi.createEvent(data.event)
     }
 
