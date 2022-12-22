@@ -11,6 +11,8 @@
 :root {
     --baby-blue: #89CFF0;
     --black : #070606;
+
+    --transition: all 500ms ease;
     
 }
 

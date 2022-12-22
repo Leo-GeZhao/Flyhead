@@ -12,7 +12,7 @@
 .marker__container:hover {
     z-index: 2;
     transform: translate(-5%, -5%);
-    transition: all 500ms ease;
+    transition: var(--transition);
 }
 
 .card-subtitle{
@@ -26,4 +26,16 @@
 
 .rating{
     font-size: 20rem;
+}
+
+input:placeholder-shown {
+    width: 12rem;
+    padding: 0.5rem 0.4rem;
+    font-size: 0.8rem;
+    position: absolute;
+    right: 2rem;
+  }
+
+.search__btn {
+    font-size: 1.6rem;
 }

@@ -1,8 +1,10 @@
-input:placeholder-shown {
-    width: 11rem;
-    font-size: 0.8rem;
-  }
-
-.search__btn {
-    font-size: 1.6rem;
+.nav-link {
+  text-decoration: none;
+  color: var(--black);
 }
+
+.nav-link:hover{
+  transform: translateY(-0.2rem);
+  transition: var(--transition);
+}
+

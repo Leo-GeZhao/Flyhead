@@ -47,7 +47,7 @@ const SearchMap = () => {
 
   return (
     <>
-        <Header setCoordinates={setCoordinates}/>
+        <Header/>
         <main className='searchMap'>  
                     <List 
                     places={filteredPlaces.length? filteredPlaces : places}

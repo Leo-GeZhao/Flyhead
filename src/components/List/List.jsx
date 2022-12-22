@@ -11,8 +11,6 @@ const [elRefs, setElRefs] = useState([])
 useEffect(() => {
   setElRefs((refs) => Array(places.length).fill().map((_, i) => refs[i] || createRef()));
 }, [places]);
-
-console.log(childClick)
   
   return (
     <div className='classes.container'>

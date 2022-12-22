@@ -6,6 +6,7 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
 import interactionPlugin from "@fullcalendar/interaction";
 import AddEventModal from '../../components/AddEventModal/AddEventModal';
+import Header from '../../components/Header/Header';
 import * as eventApi from '../../utilities/api/event'
 import moment from 'moment'
 import './event.css'
@@ -44,6 +45,8 @@ const Event = () => {
 
 
   return (
+    <>
+    <Header/>
     <div className='d-flex justify-content-around mt-5'> 
         <div className='d-flex flex-column justify-content-center'>  
             <h1 className='text-center'>Event</h1>
@@ -94,6 +97,7 @@ const Event = () => {
             />
         </div>
     </div>
+    </>
   )
 }
 
