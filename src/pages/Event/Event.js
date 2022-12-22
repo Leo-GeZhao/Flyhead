@@ -49,14 +49,14 @@ const Event = () => {
     <Header/>
     <div className='d-flex justify-content-around mt-5'> 
         <div className='d-flex flex-column justify-content-center'>  
-            <h1 className='text-center'>Event</h1>
-            <button onClick={()=> setModalOpen(true)} className="btn btn-primary">Add a New Event</button>
+            <h1 className='text-center'>All Events</h1>
+            <button onClick={()=> setModalOpen(true)} className="btn btn-blue">Add a New Event</button>
             <AddEventModal 
             isOpen={modalOpen}
             onClose={()=> setModalOpen(false)}
             onEventAdded={event => onEventAdded(event)}
             />
-            <div className='mt-5'>
+            <div className='mt-3'>
                 {events.map((event)=> {
                     const start = new Date(event.start)
                     const end = new Date(event.end)

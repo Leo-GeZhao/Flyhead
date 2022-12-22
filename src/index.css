@@ -32,3 +32,11 @@ footer, nav {
     background-color: var(--baby-blue);
 }
 
+.btn-blue {
+    background-color: var(--baby-blue);
+}
+
+.btn-blue:hover{
+    border: 1px solid var(--baby-blue);
+}
+
