@@ -20,7 +20,7 @@ async function create(req,res,next){
 
 async function index(req,res,next){
     try{
-        const events = await Event.find();
+        const events = await Event.find().sort({"start":1});
         res.send(events)
     }catch(err) {
         res.status(400).json(err)
