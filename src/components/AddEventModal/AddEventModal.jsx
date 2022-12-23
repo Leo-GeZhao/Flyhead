@@ -19,7 +19,7 @@ const AddEventModal = ({isOpen, onClose, onEventAdded}) => {
     const [title, setTitle] = useState("")
     const [start, setStart] = useState(new Date())
     const [end, setEnd] = useState(new Date())
-    const [color, setColor] = useState("#f9ddb1")
+    const [color, setColor] = useState("#95bb72")
 
 
     const onSubmit = (event) => {
@@ -49,6 +49,7 @@ const AddEventModal = ({isOpen, onClose, onEventAdded}) => {
         <div>
             <label htmlFor="color" className='mt-2'>Category</label>
             <select name="color" id="" className='mt-2 form-control' value={color} onChange={e=> setColor(e.target.value)}>
+                <option disabled value="null">Select an Option</option>
                 <option value={"#95bb72"}>Food</option>
                 <option value={"#da8ee7"}>Hotel</option>
                 <option value={"#6699CC"}>Attraction</option>
