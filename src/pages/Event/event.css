@@ -2,3 +2,8 @@
     position: relative;
     z-index: 0;
 }
+
+.delete__btn {
+    margin-left: 7rem;
+    font-size: 0.9rem;
+}

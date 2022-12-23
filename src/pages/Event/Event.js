@@ -18,7 +18,11 @@ const Event = () => {
 
     const [modalOpen, setModalOpen] = useState(false);
     const [events, setEvents] = useState([])
+    const [listEvents, setListEvents] = useState([])
     const calendarRef = useRef(null)
+    const reload = () => {
+        window.location.reload();
+    }
 
     const onEventAdded = event => {
         console.log(event)
@@ -31,14 +35,27 @@ const Event = () => {
         })
     }
 
-    const handleEventAdd = (data) => {
-        console.log(data.event)
-        eventApi.createEvent(data.event)
+    const handleEventAdd = async (data) => {
+        const event = await eventApi.createEvent(data.event)
+        setListEvents([...events, event.data])
+        setEvents([...events, event.data])
+        reload()
+        
+    }
+
+    const handleEventDelete = (event) => {
+        const id = event.target.value
+        const updatedEvent = events.filter(events => events._id !== id)
+        setListEvents(updatedEvent)
+        eventApi.deleteEvent(id)
+        setEvents(updatedEvent)
+       
     }
 
     const handleDatesSet = async () => {
         const eventsData = await eventApi.getEvents()
         setEvents(eventsData.data)
+        setListEvents(eventsData.data)
     }
 
 
@@ -55,7 +72,7 @@ const Event = () => {
             onEventAdded={event => onEventAdded(event)}
             />
             <div className='mt-3'>
-                {events.map((event)=> {
+                {listEvents.map((event)=> {
                     const start = new Date(event.start)
                     const end = new Date(event.end)
                     return (
@@ -64,6 +81,7 @@ const Event = () => {
                             <h5 className="card-title mb-3" style={{color: event.color}}>{event.title}</h5>
                             <p className='card-text'><strong>Start:</strong> {start.toDateString().substring(4,10)} - {start.toLocaleTimeString().substring(0,4)} {start.toLocaleTimeString().substring(8,10)}</p>
                             <p className='card-text'><strong>End:</strong> {end.toDateString().substring(4,10)} - {end.toLocaleTimeString().substring(0,4)} {end.toLocaleTimeString().substring(8,10)}</p>
+                            <button className='btn btn-danger delete__btn' value={event._id} onClick={event => handleEventDelete(event)}>Delete</button>
                         </div>
                     </div>
                 )})}
@@ -89,8 +107,8 @@ const Event = () => {
             selectMirror={true}
             dayMaxEvents={true}
             ref={calendarRef}
-            eventAdd={(event)=> handleEventAdd(event)}
             datesSet={(date)=> handleDatesSet(date)}
+            eventAdd={(event)=> handleEventAdd(event)}
             events={events}
             />
         </div>
