@@ -11,9 +11,9 @@ export const Landing = () => {
       </div>
       <div className='d-flex flex-column justify-content-center align-items-center mb-5'>
         <div className='d-flex flex-column align-items-center justify-content-center'>
-            <h1>FlyHead</h1>
-            <Link className="mt-2" to="/map">Your Next Destination</Link>
-            <Link className='mt-2' to="/event">Your Current Event</Link>
+            <h1 className='landing__title'>FlyHead</h1>
+            <Link className="mt-2 landing__link" to="/map">Your Next Destination</Link>
+            <Link className='mt-2 landing__link' to="/event">Your Current Event</Link>
         </div>
       </div>
     </div>

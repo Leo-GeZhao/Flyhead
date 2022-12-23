@@ -27,6 +27,16 @@ main {
     flex: 1;
 }
 
+a {
+    text-decoration: none;
+    color: var(--baby-blue);
+}
+
+a:hover{
+    transform: translateY(-0.2rem);
+    transition: var(--transition);
+    color: var(--black);
+}
 
 footer, nav {
     background-color: var(--baby-blue);

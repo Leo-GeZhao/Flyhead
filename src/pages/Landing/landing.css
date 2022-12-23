@@ -8,3 +8,12 @@
     display: grid;
     grid-template-columns: 3fr  2fr;
 }
+
+.landing__link:hover{
+    border-bottom: 1px solid var(--black);
+}
+
+.landing__title:hover {
+    color: var(--baby-blue);
+    transition: var(--transition);
+}

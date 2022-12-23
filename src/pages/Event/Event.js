@@ -41,8 +41,6 @@ const Event = () => {
         setEvents(eventsData.data)
     }
 
-    console.log(events)
-
 
   return (
     <>
@@ -63,9 +61,9 @@ const Event = () => {
                     return (
                     <div className='card mb-2'>
                         <div className='card-body'> 
-                            <h5 className='card-title mb-3'>{event.title}</h5>
-                            <p className='card-text'>Start: {start.toDateString().substring(4,10)} - {start.toLocaleTimeString().substring(0,4)} {start.toLocaleTimeString().substring(8,10)}</p>
-                            <p className='card-text'>End: {end.toDateString().substring(4,10)} - {end.toLocaleTimeString().substring(0,4)} {end.toLocaleTimeString().substring(8,10)}</p>
+                            <h5 className="card-title mb-3" style={{color: event.color}}>{event.title}</h5>
+                            <p className='card-text'><strong>Start:</strong> {start.toDateString().substring(4,10)} - {start.toLocaleTimeString().substring(0,4)} {start.toLocaleTimeString().substring(8,10)}</p>
+                            <p className='card-text'><strong>End:</strong> {end.toDateString().substring(4,10)} - {end.toLocaleTimeString().substring(0,4)} {end.toLocaleTimeString().substring(8,10)}</p>
                         </div>
                     </div>
                 )})}
