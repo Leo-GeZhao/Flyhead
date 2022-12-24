@@ -52,6 +52,7 @@ useEffect(() => {
                 place={place}
                 selected={Number(childClick) === i}
                 refProp = {elRefs[i]}
+                type={type}
                 />
             </div>
           ))}

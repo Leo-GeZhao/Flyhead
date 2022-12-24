@@ -43,7 +43,6 @@ const SearchMap = () => {
     }
   },[type,bounds]);
 
-  console.log(childClick)
 
   return (
     <>
@@ -57,6 +56,7 @@ const SearchMap = () => {
                     setType={setType}
                     rating={rating}
                     setRating={setRating}
+                    
                     />
                     <Map 
                     setCoordinates={setCoordinates} 

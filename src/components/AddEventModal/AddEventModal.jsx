@@ -14,12 +14,21 @@ const customStyles = {
     }
 }
 
-const AddEventModal = ({isOpen, onClose, onEventAdded}) => {
+const categoryColor = {
+    Food : "#95bb72",
+    Hotel : "#da8ee7",
+    Attraction: "#6699CC"
+}
 
-    const [title, setTitle] = useState("")
+const AddEventModal = ({isOpen, onClose, onEventAdded, place, placeName}) => {
+
+
+    const eventTitle = {place} === undefined ? "" : placeName
+
+    const [title, setTitle] = useState(eventTitle)
     const [start, setStart] = useState(new Date())
     const [end, setEnd] = useState(new Date())
-    const [color, setColor] = useState("#95bb72")
+    const [color, setColor] = useState(categoryColor.Food)
 
 
     const onSubmit = (event) => {
@@ -50,9 +59,9 @@ const AddEventModal = ({isOpen, onClose, onEventAdded}) => {
             <label htmlFor="color" className='mt-2'>Category</label>
             <select name="color" id="" className='mt-2 form-control' value={color} onChange={e=> setColor(e.target.value)}>
                 <option disabled value="null">Select an Option</option>
-                <option value={"#95bb72"}>Food</option>
-                <option value={"#da8ee7"}>Hotel</option>
-                <option value={"#6699CC"}>Attraction</option>
+                <option value={categoryColor.Food}>Food</option>
+                <option value={categoryColor.Hotel}>Hotel</option>
+                <option value={categoryColor.Attraction}>Attraction</option>
             </select>
         </div>
         <button className='btn btn-primary mt-2'>Add Event</button>

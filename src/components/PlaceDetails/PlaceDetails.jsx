@@ -1,17 +1,28 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Rating from '@material-ui/lab/Rating'
 import {HiLocationMarker} from 'react-icons/hi'
 import {BsTelephoneFill} from 'react-icons/bs'
-
-
-
+import AddEventModal from '../AddEventModal/AddEventModal'
+import * as eventApi from '../../utilities/api/event'
+import { useNavigate } from 'react-router-dom'
 
 import './placeDetails.css'
 
 const PlaceDetails = ({place, selected, refProp}) => {
 
   if (selected) refProp?.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  // console.log(refProp)
+
+  const [modalOpen, setModalOpen] = useState(false);
+
+
+  const navigate = useNavigate()
+  
+  const onEventAdded = event => {
+    console.log(event)
+      event.backgroundColor = event.color
+      eventApi.createEvent(event)
+      navigate('/event')
+}
   
   return (
         <div className='card border-light p-2'>
@@ -57,6 +68,16 @@ const PlaceDetails = ({place, selected, refProp}) => {
             )}
             <div className='mt-2 ms-1'>
               <a className="card-link" href={place.website} target="_blank" rel="noopener noreferrer">Website</a>
+            </div>
+            <div>
+              <button onClick={()=> setModalOpen(true)} className="btn btn-blue">Add Event</button>
+              <AddEventModal 
+              isOpen={modalOpen}
+              onClose={()=> setModalOpen(false)}
+              onEventAdded={place => onEventAdded(place)}
+              place={place}
+              placeName = {place.name}
+            />
             </div>
         </div>
   );

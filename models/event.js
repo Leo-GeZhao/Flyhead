@@ -14,12 +14,6 @@ const eventSchema = new Schema({
         type:Date,
         required:true
     },
-    // backgroundColor:{
-    //     type:String,
-    // },
-    // borderColor:{
-    //     type:String,
-    // },
     color:{
         type:String
     },
