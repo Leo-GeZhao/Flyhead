@@ -9,7 +9,15 @@
     grid-template-columns: 3fr  2fr;
 }
 
+.landing__link{
+    text-decoration: none;
+    color: var(--baby-blue);
+}
+
 .landing__link:hover{
+    transform: translateY(-0.2rem);
+    transition: var(--transition);
+    color: var(--black);
     border-bottom: 1px solid var(--black);
 }
 
@@ -17,3 +25,4 @@
     color: var(--baby-blue);
     transition: var(--transition);
 }
+

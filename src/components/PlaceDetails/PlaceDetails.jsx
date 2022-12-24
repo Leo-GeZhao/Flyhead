@@ -67,10 +67,10 @@ const PlaceDetails = ({place, selected, refProp}) => {
               </div>
             )}
             <div className='mt-2 ms-1'>
-              <a className="card-link" href={place.website} target="_blank" rel="noopener noreferrer">Website</a>
+              <button className='btn btn-blue'><a className="website__link" href={place.website} target="_blank" rel="noopener noreferrer">Website</a></button>
             </div>
             <div>
-              <button onClick={()=> setModalOpen(true)} className="btn btn-blue">Add Event</button>
+              <button onClick={()=> setModalOpen(true)} className="btn btn-blue mt-2 ms-1">Add Event</button>
               <AddEventModal 
               isOpen={modalOpen}
               onClose={()=> setModalOpen(false)}
