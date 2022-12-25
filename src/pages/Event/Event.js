@@ -78,8 +78,8 @@ const Event = () => {
                     <div className='card mb-2'>
                         <div className='card-body'> 
                             <h5 className="card-title mb-3" style={{color: event.color}}>{event.title} {event.color === "#95bb72" ? <span>🍔</span> : event.color === "#da8ee7" ? <span>🏠</span> : event.color === "#6699CC" ? <span>🏖</span> : "" }</h5>
-                            <p className='card-text'><strong>Start:</strong> {start.toDateString().substring(4,10)} - {start.toLocaleTimeString().substring(0,5)}{start.toLocaleTimeString().substring(5,11)}</p>
-                            <p className='card-text'><strong>End:</strong> {end.toDateString().substring(4,10)} - {end.toLocaleTimeString().substring(0,5)}{end.toLocaleTimeString().substring(5,11)}</p>
+                            <p className='card-text'><strong>Start:</strong> {start.toDateString().substring(4,10)} - {start.toLocaleTimeString().substring(0,4)}{start.toLocaleTimeString().substring(7,11)}</p>
+                            <p className='card-text'><strong>End:</strong> {end.toDateString().substring(4,10)} - {end.toLocaleTimeString().substring(0,4)}{end.toLocaleTimeString().substring(7,11)}</p>
                             <button className='btn btn-danger delete__btn' value={event._id} onClick={event => handleEventDelete(event)}>Delete</button>
                         </div>
                     </div>

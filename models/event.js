@@ -18,7 +18,8 @@ const eventSchema = new Schema({
         type:String
     },
     expense:{
-        type:Number
+        type:Number,
+        default:0,
     }
 },{
     timestamps:true
