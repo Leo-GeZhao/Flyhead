@@ -39,8 +39,7 @@ const Event = () => {
         const event = await eventApi.createEvent(data.event)
         setListEvents([...events, event.data])
         setEvents([...events, event.data])
-        reload()
-        
+        reload()  
     }
 
     const handleEventDelete = (event) => {

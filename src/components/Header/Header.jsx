@@ -13,6 +13,7 @@ const Header = () => {
           <div className='navbar-nav d-flex flex-row'>
             <Link to="/map"  className='mx-2 nav-link'>Map</Link>
             <Link to="/event"  className='mx-2 nav-link'>Events</Link>
+            <Link to="/spending"  className='mx-2 nav-link'>Spending</Link>
           </div>
         </div>
       </nav>

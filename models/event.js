@@ -17,11 +17,6 @@ const eventSchema = new Schema({
     color:{
         type:String
     },
-    extendedProps:{
-        category:{
-            type:String,
-        }
-    }
 },{
     timestamps:true
 })
