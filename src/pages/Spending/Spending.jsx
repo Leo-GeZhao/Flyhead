@@ -100,12 +100,12 @@ const Spending = () => {
             </div>
         </div>
         <div className='mt-5 container-fluid'>
-        <div className='row row-cols-4 justify-content-between'>  
+        <div className='row row-cols-4 justify-content-center'>  
             {events.map((event)=> {
                 const start = new Date(event.start)
                 const end = new Date(event.end)
                 return (
-                        <div className='mb-2 row card'>
+                        <div className='mb-2 mx-2 row card'>
                             <div className='card-body'> 
                                 <h5 className="card-title mb-3" style={{color: event.color}}>{event.title} {event.color === "#95bb72" ? <span>🍔</span> : event.color === "#da8ee7" ? <span>🏠</span> : event.color === "#6699CC" ? <span>🏖</span> : "" }</h5>
                                 <p className='card-text'><strong>Start:</strong> {start.toDateString().substring(4,10)} - {start.toLocaleTimeString().substring(0,4)}{start.toLocaleTimeString().substring(7,11)}</p>
@@ -115,7 +115,7 @@ const Spending = () => {
                                     setModalOpen(true)
                                     setModalId(event._id)
                                     }}
-                                    className="btn btn-blue">Add Expense</button>
+                                    className="btn btn-blue">Edit Expense</button>
                                 <AddSpendingModal 
                                     isOpen={modalOpen}
                                     onClose={()=> setModalOpen(false)}
