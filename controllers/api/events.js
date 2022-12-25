@@ -37,6 +37,17 @@ async function deleteOne(req,res,next){
     }
 }
 
+async function finish(req,res,next){
+    try{
+        await Event.updateOne({_id:req.params.id},
+            {$set:{isFinish:true}}
+        )
+        res.json() 
+    }catch(err){
+        res.status(400).json(err)
+    }
+}
+
 async function edit(req,res,next){
     try{
         await Event.findOneAndUpdate(
@@ -53,5 +64,6 @@ module.exports = {
     create,
     index,
     delete:deleteOne,
+    finish,
     edit,
 }

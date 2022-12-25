@@ -26,6 +26,7 @@ const Spending = () => {
         async function getSpending(){
             const events = await eventApi.getEvents()
             
+            
             const curMonthEvents = events.data.filter((event)=>(event.start.substring(5,7) === month))
             setEvents(curMonthEvents)
             
@@ -103,7 +104,7 @@ const Spending = () => {
                 const start = new Date(event.start)
                 const end = new Date(event.end)
                 return (
-                        <div className='row card'>
+                        <div className='mb-2 row card'>
                             <div className='card-body'> 
                                 <h5 className="card-title mb-3" style={{color: event.color}}>{event.title} {event.color === "#95bb72" ? <span>🍔</span> : event.color === "#da8ee7" ? <span>🏠</span> : event.color === "#6699CC" ? <span>🏖</span> : "" }</h5>
                                 <p className='card-text'><strong>Start:</strong> {start.toDateString().substring(4,10)} - {start.toLocaleTimeString().substring(0,4)}{start.toLocaleTimeString().substring(7,11)}</p>

@@ -17,6 +17,10 @@ const eventSchema = new Schema({
     color:{
         type:String
     },
+    isFinish:{
+        type:Boolean,
+        default:false,
+    },
     expense:{
         type:Number,
         default:0,

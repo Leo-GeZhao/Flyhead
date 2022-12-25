@@ -1,5 +1,4 @@
-import React from 'react'
-import { useState, useRef} from 'react';
+import React, { useState, useRef, useEffect} from 'react'
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
@@ -19,10 +18,24 @@ const Event = () => {
     const [events, setEvents] = useState([])
     const [listEvents, setListEvents] = useState([])
     const [modalOpen, setModalOpen] = useState(false);
+    const [finish, setFinish] = useState(false)
     const calendarRef = useRef(null)
     const reload = () => {
         window.location.reload();
     }
+
+    
+    useEffect(function(){
+        async function getUnfinishEvents(){
+            const eventsData = await eventApi.getEvents()
+            const unfinishEvent = eventsData.data.filter(events => events.isFinish === false)
+            console.log(unfinishEvent)
+            setListEvents(unfinishEvent)
+            setFinish(false)
+            console.log(listEvents)
+        };
+        getUnfinishEvents()
+    },[finish])
 
     const onEventAdded = event => {
         console.log(event)
@@ -51,11 +64,22 @@ const Event = () => {
        
     }
 
+    const handleEventFinish = (event) => {
+        const id = event.target.value
+        console.log(id)
+        eventApi.finishEvent(id)
+        setFinish(true) 
+    }
+
     const handleDatesSet = async () => {
         const eventsData = await eventApi.getEvents()
+        // const unfinishEvent = eventsData.data.filter(events => events.isFinish === false)
+        // console.log(unfinishEvent)
         setEvents(eventsData.data)
-        setListEvents(eventsData.data)
+        // setListEvents(unfinishEvent)
     }
+
+
 
 
   return (
@@ -71,7 +95,7 @@ const Event = () => {
             onEventAdded={event => onEventAdded(event)}
             />
             <div className='mt-3'>
-                {listEvents.map((event)=> {
+                {listEvents?.map((event)=> {
                     const start = new Date(event.start)
                     const end = new Date(event.end)
                     return (
@@ -80,7 +104,10 @@ const Event = () => {
                             <h5 className="card-title mb-3" style={{color: event.color}}>{event.title} {event.color === "#95bb72" ? <span>🍔</span> : event.color === "#da8ee7" ? <span>🏠</span> : event.color === "#6699CC" ? <span>🏖</span> : "" }</h5>
                             <p className='card-text'><strong>Start:</strong> {start.toDateString().substring(4,10)} - {start.toLocaleTimeString().substring(0,4)}{start.toLocaleTimeString().substring(7,11)}</p>
                             <p className='card-text'><strong>End:</strong> {end.toDateString().substring(4,10)} - {end.toLocaleTimeString().substring(0,4)}{end.toLocaleTimeString().substring(7,11)}</p>
-                            <button className='btn btn-danger delete__btn' value={event._id} onClick={event => handleEventDelete(event)}>Delete</button>
+                            <div className='btn-group'>
+                                <button className='btn btn-success delete__btn' value={event._id} onClick={event => handleEventFinish(event)}>Finish</button>
+                                <button className='btn btn-danger delete__btn ms-1' value={event._id} onClick={event => handleEventDelete(event)}>Delete</button>
+                            </div>
                         </div>
                     </div>
                 )})}
