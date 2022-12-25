@@ -12,3 +12,7 @@ export function getEvents(){
 export function deleteEvent(id){
     return axios.delete(`${BASE_URL}/delete-event/${id}`)
 }
+
+export function editExpense(id, data){
+    return axios.put(`${BASE_URL}/${id}/edit-expense`, data)
+}
