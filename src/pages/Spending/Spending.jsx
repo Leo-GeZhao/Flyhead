@@ -25,9 +25,10 @@ const Spending = () => {
     useEffect(function(){
         async function getSpending(){
             const events = await eventApi.getEvents()
+            const finishEvent = events.data.filter(events => events.isFinish === true)
+            console.log(finishEvent)
             
-            
-            const curMonthEvents = events.data.filter((event)=>(event.start.substring(5,7) === month))
+            const curMonthEvents = finishEvent.filter((event)=>(event.start.substring(5,7) === month))
             setEvents(curMonthEvents)
             
             const totalExpense = curMonthEvents.map(event => event.expense).reduce((a,b)=> a+b, 0)
