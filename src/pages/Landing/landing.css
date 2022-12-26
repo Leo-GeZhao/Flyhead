@@ -7,6 +7,8 @@
 .landing {
     display: grid;
     grid-template-columns: 3fr  2fr;
+    justify-items: center;
+    align-items: center;
 }
 
 .landing__link{

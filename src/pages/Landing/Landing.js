@@ -9,7 +9,7 @@ export const Landing = () => {
       <div>
         <img className='Landing__img' src={LandingImg} alt="" />
       </div>
-      <div className='d-flex flex-column justify-content-center align-items-center mb-5'>
+      <div className=''>
         <div className='d-flex flex-column align-items-center justify-content-center'>
             <h1 className='landing__title'>FlyHead</h1>
             <Link className="mt-2 landing__link" to="/map">Next Destination</Link>
