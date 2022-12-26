@@ -26,8 +26,7 @@ const Spending = () => {
         async function getSpending(){
             const events = await eventApi.getEvents()
             const finishEvent = events.data.filter(events => events.isFinish === true)
-            console.log(finishEvent)
-            
+
             const curMonthEvents = finishEvent.filter((event)=>(event.start.substring(5,7) === month))
             setEvents(curMonthEvents)
             
@@ -58,7 +57,7 @@ const Spending = () => {
         <Header/>
         <div className='mt-5 d-flex justify-content-center'>
             <label htmlFor="month" className='mt-2'>Month: </label>
-            <select name="month" id="" class="form-control ms-3 month__select" value={month} onChange={e=> setMonth(e.target.value)}>
+            <select name="month" id="" className="form-control ms-3 month__select" value={month} onChange={e=> setMonth(e.target.value)}>
                 <option disabled value="null">Select an Month</option>
                 <option value={"1"}>January</option>
                 <option value={"2"}>February</option>

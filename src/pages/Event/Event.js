@@ -30,16 +30,13 @@ const Event = () => {
         async function getUnfinishEvents(){
             const eventsData = await eventApi.getEvents()
             const unfinishEvent = eventsData.data.filter(events => events.isFinish === false)
-            console.log(unfinishEvent)
             setListEvents(unfinishEvent)
             setFinish(false)
-            console.log(listEvents)
         };
         getUnfinishEvents()
     },[finish])
 
     const onEventAdded = event => {
-        console.log(event)
         const calendarApi = calendarRef.current.getApi()
         calendarApi.addEvent({
             title:event.title,
@@ -67,17 +64,13 @@ const Event = () => {
 
     const handleEventFinish = (event) => {
         const id = event.target.value
-        console.log(id)
         eventApi.finishEvent(id)
         setFinish(true) 
     }
 
     const handleDatesSet = async () => {
         const eventsData = await eventApi.getEvents()
-        // const unfinishEvent = eventsData.data.filter(events => events.isFinish === false)
-        // console.log(unfinishEvent)
         setEvents(eventsData.data)
-        // setListEvents(unfinishEvent)
     }
 
 
