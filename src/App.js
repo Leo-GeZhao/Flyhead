@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import {Routes, Route} from 'react-router-dom'
 import SearchMap from './pages/SearchMap/SearchMap'
 import { Landing } from './pages/Landing/Landing'

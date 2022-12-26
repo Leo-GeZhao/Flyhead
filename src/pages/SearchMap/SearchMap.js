@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useState, useEffect} from 'react'
 import Header from '../../components/Header/Header'
 import List from '../../components/List/List'
