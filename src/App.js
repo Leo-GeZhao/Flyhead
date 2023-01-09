@@ -9,7 +9,6 @@ import { logout } from "./utilities/service/user";
 
 const App = () => {
   const [user, setUser] = useState(null);
-  console.log(user);
 
   function handleLogOut() {
     logout();

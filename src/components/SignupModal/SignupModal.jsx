@@ -27,7 +27,6 @@ const SignupModal = ({ isOpen, onClose, setUser }) => {
     const data = { name, password, email };
 
     const user = await signUp(data);
-    console.log(user);
     setUser(user);
     onClose();
   };
