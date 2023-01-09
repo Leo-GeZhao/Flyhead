@@ -26,13 +26,10 @@ const Spending = () => {
         const finishEvent = events.data.filter(
           (events) => events.isFinish === true
         );
-        console.log(month);
-        console.log(finishEvent);
 
         const curMonthEvents = finishEvent.filter(
           (event) => event.start.substring(5, 7) === month
         );
-        console.log(curMonthEvents);
         setEvents(curMonthEvents);
 
         const totalExpense = curMonthEvents
