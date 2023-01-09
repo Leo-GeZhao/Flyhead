@@ -53,7 +53,9 @@ const LoginModal = ({ isOpen, onClose, setUser }) => {
             required
           />
         </div>
-        <button type="submit">LOG IN</button>
+        <button type="submit" className="mt-2 btn btn-blue">
+          LOG IN
+        </button>
       </form>
     </Modal>
   );

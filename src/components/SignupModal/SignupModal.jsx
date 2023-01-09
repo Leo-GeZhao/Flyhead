@@ -98,7 +98,11 @@ const SignupModal = ({ isOpen, onClose, setUser }) => {
             />
           </div>
 
-          <button className="" type="submit" disabled={disabled}>
+          <button
+            className="mt-2 btn btn-blue"
+            type="submit"
+            disabled={disabled}
+          >
             Sign up
           </button>
         </form>
