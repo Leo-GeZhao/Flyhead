@@ -12,6 +12,7 @@ export const Landing = ({ user, setUser, handleLogOut }) => {
   const [signUpModalOpen, setSignUpModalOpen] = useState(false);
 
   const divRef = useRef(null);
+  console.log(divRef);
 
   async function handleCallBackRes(res) {
     const userObj = jwt_decode(res.credential);

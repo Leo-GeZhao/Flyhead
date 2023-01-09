@@ -8,7 +8,7 @@ import { getUser } from "./utilities/service/user";
 import { logout } from "./utilities/service/user";
 
 const App = () => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(getUser);
 
   function handleLogOut() {
     logout();
