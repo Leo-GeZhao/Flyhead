@@ -8,3 +8,7 @@ export async function signUp(data) {
 export async function login(data) {
   return axios.post(`${BASE_URL}/login`, data);
 }
+
+export async function googleSignIn(data) {
+  return axios.post(`${BASE_URL}/googleSignIn`, data);
+}

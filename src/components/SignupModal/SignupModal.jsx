@@ -19,13 +19,12 @@ const defaultState = {
 
 const SignupModal = ({ isOpen, onClose, setUser }) => {
   const [formData, setFormData] = useState(defaultState);
-
   const { name, email, password, confirm } = formData;
+
   const onSubmit = async (event) => {
     event.preventDefault();
     const { name, password, email } = formData;
     const data = { name, password, email };
-
     const user = await signUp(data);
     setUser(user);
     onClose();

@@ -35,3 +35,9 @@ export async function login(credentials) {
   window.localStorage.setItem("token", JSON.stringify(token));
   return getUser();
 }
+
+export async function googleSignIn(data) {
+  const token = await usersAPI.googleSignIn(data);
+  window.localStorage.setItem("token", JSON.stringify(token));
+  return getUser();
+}

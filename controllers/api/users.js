@@ -25,7 +25,28 @@ async function login(req, res) {
   }
 }
 
+async function googleSignIn(req, res) {
+  try {
+    const user = await User.findOne({ email: req.body.email });
+    const token = createJWT(user);
+    if (!user) {
+      const newUser = await User();
+      newUser.name = req.body.name;
+      newUser.password = req.body.email;
+      newUser.email = req.body.email;
+      newUser.save();
+      const token = createJWT(user);
+      res.json({ token });
+    } else {
+      res.json({ token });
+    }
+  } catch (err) {
+    res.status(400).json(err);
+  }
+}
+
 module.exports = {
   create,
   login,
+  googleSignIn,
 };
