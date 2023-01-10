@@ -23,7 +23,6 @@ const LoginModal = ({ isOpen, onClose, setUser }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const user = await login(credentials);
-    console.log(user);
     setUser(user);
     onClose();
   };

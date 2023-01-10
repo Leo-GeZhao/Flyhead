@@ -17,7 +17,6 @@ const PlaceDetails = ({ place, selected, refProp, user }) => {
   const navigate = useNavigate();
 
   const onEventAdded = (event) => {
-    console.log(event);
     event.backgroundColor = event.color;
     event.user = user._id;
     eventApi.createEvent(event);

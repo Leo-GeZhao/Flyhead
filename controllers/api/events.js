@@ -51,7 +51,6 @@ async function finish(req, res, next) {
 
 async function edit(req, res, next) {
   try {
-    console.log(req.body);
     await Event.findOneAndUpdate(
       { _id: ObjectId(req.params.id) },
       { expense: req.body.expenseNum }

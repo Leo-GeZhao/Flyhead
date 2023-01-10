@@ -49,7 +49,6 @@ const Event = ({ user }) => {
 
   const handleEventAdd = async (data) => {
     const event = await eventApi.createEvent(data.event);
-    console.log(event);
     setListEvents([...events, event.data]);
     setEvents([...events, event.data]);
     reload();

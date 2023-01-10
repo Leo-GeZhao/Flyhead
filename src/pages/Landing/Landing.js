@@ -17,12 +17,8 @@ export const Landing = ({
   const [loginModalOpen, setLoginModalOpen] = useState(false);
   const [signUpModalOpen, setSignUpModalOpen] = useState(false);
 
-  // const divRef = useRef(null);
-  // console.log(divRef);
-
   async function handleCallBackRes(res) {
     const userObj = jwt_decode(res.credential);
-    console.log(userObj);
     const { name, email } = userObj;
     const data = { name, email };
     const user = await googleSignIn(data);
@@ -31,7 +27,6 @@ export const Landing = ({
 
   useEffect(() => {
     if (showGoogleSignIn) {
-      /* global google */
       window.google.accounts.id.initialize({
         client_id:
           "152273172165-2j8j5jvmrtpop9kcuj2ktb7as4lv7kpa.apps.googleusercontent.com",

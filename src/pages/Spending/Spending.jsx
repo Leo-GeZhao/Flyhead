@@ -23,7 +23,6 @@ const Spending = ({ user }) => {
     function () {
       async function getSpending() {
         const events = await eventApi.getEvents({ user: user._id });
-        console.log(events.data);
         const finishEvent = events.data.filter(
           (events) => events.isFinish === true
         );
