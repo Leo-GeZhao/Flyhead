@@ -35,7 +35,7 @@ async function googleSignIn(req, res) {
       newUser.password = req.body.email;
       newUser.email = req.body.email;
       newUser.save();
-      const token = createJWT(user);
+      const token = createJWT(newUser);
       res.json({ token });
     } else {
       res.json({ token });
