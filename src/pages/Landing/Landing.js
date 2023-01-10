@@ -28,8 +28,7 @@ export const Landing = ({
   useEffect(() => {
     if (showGoogleSignIn) {
       window.google.accounts.id.initialize({
-        client_id:
-          "152273172165-2j8j5jvmrtpop9kcuj2ktb7as4lv7kpa.apps.googleusercontent.com",
+        client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
         callback: handleCallBackRes,
       });
 
