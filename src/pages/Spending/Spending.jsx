@@ -6,7 +6,7 @@ import PieChart from "../../components/PieChart/PieChart";
 
 import "./spending.css";
 
-const Spending = () => {
+const Spending = ({ user }) => {
   const [month, setMonth] = useState("01");
 
   const [events, setEvents] = useState([]);
@@ -22,7 +22,8 @@ const Spending = () => {
   useEffect(
     function () {
       async function getSpending() {
-        const events = await eventApi.getEvents();
+        const events = await eventApi.getEvents({ user: user._id });
+        console.log(events.data);
         const finishEvent = events.data.filter(
           (events) => events.isFinish === true
         );

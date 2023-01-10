@@ -9,17 +9,29 @@ import { logout } from "./utilities/service/user";
 
 const App = () => {
   const [user, setUser] = useState(getUser);
+  const [showGoogleSignIn, setShowGoogleSignIn] = useState(true);
 
   function handleLogOut() {
     logout();
     setUser(null);
+    setShowGoogleSignIn(true);
   }
 
   return (
     <main className="App">
       <Routes>
         {!user ? (
-          <Route path="/" element={<Landing user={user} setUser={setUser} />} />
+          <Route
+            path="/"
+            element={
+              <Landing
+                user={user}
+                setUser={setUser}
+                showGoogleSignIn={showGoogleSignIn}
+                setShowGoogleSignIn={setShowGoogleSignIn}
+              />
+            }
+          />
         ) : (
           <>
             <Route
@@ -32,9 +44,9 @@ const App = () => {
                 />
               }
             />
-            <Route path="/map" element={<SearchMap />} />
-            <Route path="/event" element={<Event />} />
-            <Route path="/spending" element={<Spending />} />
+            <Route path="/map" element={<SearchMap user={user} />} />
+            <Route path="/event" element={<Event user={user} />} />
+            <Route path="/spending" element={<Spending user={user} />} />
           </>
         )}
       </Routes>

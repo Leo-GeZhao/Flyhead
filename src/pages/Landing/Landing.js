@@ -7,12 +7,18 @@ import jwt_decode from "jwt-decode";
 import { googleSignIn } from "../../utilities/service/user";
 import "./landing.css";
 
-export const Landing = ({ user, setUser, handleLogOut }) => {
+export const Landing = ({
+  user,
+  setUser,
+  handleLogOut,
+  showGoogleSignIn,
+  setShowGoogleSignIn,
+}) => {
   const [loginModalOpen, setLoginModalOpen] = useState(false);
   const [signUpModalOpen, setSignUpModalOpen] = useState(false);
 
-  const divRef = useRef(null);
-  console.log(divRef);
+  // const divRef = useRef(null);
+  // console.log(divRef);
 
   async function handleCallBackRes(res) {
     const userObj = jwt_decode(res.credential);
@@ -24,7 +30,7 @@ export const Landing = ({ user, setUser, handleLogOut }) => {
   }
 
   useEffect(() => {
-    if (divRef.current) {
+    if (showGoogleSignIn) {
       /* global google */
       window.google.accounts.id.initialize({
         client_id:
@@ -40,7 +46,7 @@ export const Landing = ({ user, setUser, handleLogOut }) => {
         }
       );
     }
-  }, [divRef.current]);
+  }, [showGoogleSignIn]);
 
   return (
     <div className="landing">
@@ -91,7 +97,11 @@ export const Landing = ({ user, setUser, handleLogOut }) => {
                 isOpen={signUpModalOpen}
                 onClose={() => setSignUpModalOpen(false)}
               />
-              <div id="signInDiv" ref={divRef} className="mt-2"></div>
+              <div
+                id="signInDiv"
+                className="mt-2"
+                onClick={() => setShowGoogleSignIn(false)}
+              ></div>
             </>
           )}
         </div>

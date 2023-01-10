@@ -11,7 +11,7 @@ import * as eventApi from "../../utilities/api/event";
 import moment from "moment";
 import "./event.css";
 
-const Event = () => {
+const Event = ({ user }) => {
   const [events, setEvents] = useState([]);
   const [listEvents, setListEvents] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
@@ -24,7 +24,7 @@ const Event = () => {
   useEffect(
     function () {
       async function getUnfinishEvents() {
-        const eventsData = await eventApi.getEvents();
+        const eventsData = await eventApi.getEvents({ user: user._id });
         const unfinishEvent = eventsData.data.filter(
           (events) => events.isFinish === false
         );
@@ -43,11 +43,13 @@ const Event = () => {
       start: moment(event.start).toDate(),
       end: moment(event.end).toDate(),
       backgroundColor: event.color,
+      user: user._id,
     });
   };
 
   const handleEventAdd = async (data) => {
     const event = await eventApi.createEvent(data.event);
+    console.log(event);
     setListEvents([...events, event.data]);
     setEvents([...events, event.data]);
     reload();
@@ -69,7 +71,7 @@ const Event = () => {
   };
 
   const handleDatesSet = async () => {
-    const eventsData = await eventApi.getEvents();
+    const eventsData = await eventApi.getEvents({ user: user._id });
     setEvents(eventsData.data);
   };
 
@@ -163,9 +165,11 @@ const Event = () => {
             selectMirror={true}
             dayMaxEvents={true}
             ref={calendarRef}
-            datesSet={(date) => handleDatesSet(date)}
-            eventAdd={(event) => handleEventAdd(event)}
             events={events}
+            datesSet={() => handleDatesSet()}
+            eventAdd={(event) => {
+              handleEventAdd(event);
+            }}
           />
         </div>
       </div>
