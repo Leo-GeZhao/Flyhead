@@ -1,6 +1,9 @@
 import React, { useState, useEffect, createRef } from "react";
 import { CircularProgress } from "@material-ui/core";
+
+//Components
 import PlaceDetails from "../PlaceDetails/PlaceDetails";
+
 import "./list.css";
 
 const List = ({
@@ -16,11 +19,10 @@ const List = ({
   const [elRefs, setElRefs] = useState([]);
 
   useEffect(() => {
-    setElRefs((refs) =>
-      Array(places.length)
-        .fill()
-        .map((_, i) => refs[i] || createRef())
-    );
+    const refs = Array(places.length)
+      .fill()
+      .map((_, i) => elRefs[i] || createRef());
+    setElRefs(refs);
   }, [places]);
 
   return (

@@ -1,13 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
+
+//Components
 import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
 import List from "../../components/List/List";
 import Map from "../../components/Map/Map";
-import Footer from "../../components/Footer/Footer";
+
+// Map API
+import * as mapAPI from "../../utilities/api/map";
 
 import "./searchMap.css";
-
-import { getPlacesData } from "../../api";
 
 const SearchMap = ({ user }) => {
   const [places, setPlaces] = useState([]);
@@ -19,6 +22,7 @@ const SearchMap = ({ user }) => {
   const [rating, setRating] = useState("");
   const [filteredPlaces, setFilteredPlaces] = useState([]);
 
+  //Get Current Location Coordinates
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
       ({ coords: { latitude, longitude } }) => {
@@ -27,21 +31,23 @@ const SearchMap = ({ user }) => {
     );
   }, []);
 
-  useEffect(() => {
-    const filteredPlaces = places.filter((place) => place.rating > rating);
-    setFilteredPlaces(filteredPlaces);
-  }, [rating]);
-
+  //Get All Places
   useEffect(() => {
     if (bounds.sw && bounds.ne) {
       setIsLoading(true);
-      getPlacesData(type, bounds.sw, bounds.ne).then((data) => {
+      mapAPI.getPlacesData(type, bounds.sw, bounds.ne).then((data) => {
         setPlaces(data?.filter((place) => place.name && place.num_reviews > 0));
         setFilteredPlaces([]);
         setIsLoading(false);
       });
     }
   }, [type, bounds]);
+
+  //Filter Place by their rating
+  useEffect(() => {
+    const filteredPlaces = places.filter((place) => place.rating > rating);
+    setFilteredPlaces(filteredPlaces);
+  }, [rating]);
 
   return (
     <>

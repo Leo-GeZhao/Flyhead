@@ -1,7 +1,10 @@
 import React, { useState } from "react";
-import { signUp } from "../../utilities/service/user";
 import Modal from "react-modal";
 
+//User Service
+import { signUp } from "../../utilities/service/user";
+
+//Modal Styles
 const customStyles = {
   content: {
     top: "40%",
@@ -10,6 +13,7 @@ const customStyles = {
   },
 };
 
+//Form Default State
 const defaultState = {
   name: "",
   email: "",
@@ -21,8 +25,18 @@ const SignupModal = ({ isOpen, onClose, setUser }) => {
   const [formData, setFormData] = useState(defaultState);
   const { name, email, password, confirm } = formData;
 
-  const onSubmit = async (event) => {
-    event.preventDefault();
+  //Capture SignUp Credentials
+  const handleChange = (e) => {
+    const newFormData = {
+      ...formData,
+      [e.target.name]: e.target.value,
+    };
+    setFormData(newFormData);
+  };
+
+  //User SignUp
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     const { name, password, email } = formData;
     const data = { name, password, email };
     const user = await signUp(data);
@@ -30,20 +44,14 @@ const SignupModal = ({ isOpen, onClose, setUser }) => {
     onClose();
   };
 
-  function handleChange(evt) {
-    const newFormData = {
-      ...formData,
-      [evt.target.name]: evt.target.value,
-    };
-    setFormData(newFormData);
-  }
-
+  //SignUp Validations
   const disabled =
     password !== confirm || !name || !email || !password || !confirm;
+
   return (
     <div className="">
       <Modal isOpen={isOpen} onRequestClose={onClose} style={customStyles}>
-        <form onSubmit={onSubmit} className="form" autoComplete="off">
+        <form onSubmit={handleSubmit} className="form" autoComplete="off">
           <div className="form-group">
             <label htmlFor="name">Name</label>
             <input

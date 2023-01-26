@@ -1,27 +1,33 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import Rating from "@material-ui/lab/Rating";
 import { HiLocationMarker } from "react-icons/hi";
 import { BsTelephoneFill } from "react-icons/bs";
+
+//Components
 import AddEventModal from "../AddEventModal/AddEventModal";
+
+//Event API
 import * as eventApi from "../../utilities/api/event";
-import { useNavigate } from "react-router-dom";
 
 import "./placeDetails.css";
 
 const PlaceDetails = ({ place, selected, refProp, user }) => {
-  if (selected)
-    refProp?.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-
   const [modalOpen, setModalOpen] = useState(false);
-
   const navigate = useNavigate();
 
+  //Add Event
   const onEventAdded = (event) => {
     event.backgroundColor = event.color;
     event.user = user._id;
     eventApi.createEvent(event);
     navigate("/event");
   };
+
+  //slide to the selected place
+  if (selected)
+    refProp?.current?.scrollIntoView({ behavior: "smooth", block: "start" });
 
   return (
     <div className="card border-light p-2">

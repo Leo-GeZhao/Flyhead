@@ -1,10 +1,15 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import jwt_decode from "jwt-decode";
+
+//Components
 import LandingImg from "../../assets/images/Landing2.jpg";
 import LoginModal from "../../components/LoginModal/LoginModal";
 import SignupModal from "../../components/SignupModal/SignupModal";
-import jwt_decode from "jwt-decode";
+
+//User Service
 import { googleSignIn } from "../../utilities/service/user";
+
 import "./landing.css";
 
 export const Landing = ({
@@ -17,14 +22,16 @@ export const Landing = ({
   const [loginModalOpen, setLoginModalOpen] = useState(false);
   const [signUpModalOpen, setSignUpModalOpen] = useState(false);
 
-  async function handleCallBackRes(res) {
+  //Google OAuth SignIn CallBack, setting up user
+  const handleCallBackRes = async (res) => {
     const userObj = jwt_decode(res.credential);
     const { name, email } = userObj;
     const data = { name, email };
     const user = await googleSignIn(data);
     setUser(user);
-  }
+  };
 
+  // Handle Google OAuth SignIn
   useEffect(() => {
     if (showGoogleSignIn) {
       window.google.accounts.id.initialize({

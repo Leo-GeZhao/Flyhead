@@ -1,11 +1,12 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import Modal from "react-modal";
-import Datetime from "react-datetime";
 import moment from "moment";
+import Datetime from "react-datetime";
+
 import "react-datetime/css/react-datetime.css";
 import "./addEventModal.css";
 
+//Modal Styles
 const customStyles = {
   content: {
     top: "40%",
@@ -14,6 +15,7 @@ const customStyles = {
   },
 };
 
+//Event Category Colors
 const categoryColor = {
   Food: "#95bb72",
   Hotel: "#da8ee7",
@@ -28,14 +30,14 @@ const AddEventModal = ({ isOpen, onClose, onEventAdded, place, placeName }) => {
   const [end, setEnd] = useState(new Date());
   const [color, setColor] = useState(categoryColor.Food);
 
-  const onSubmit = (event) => {
-    event.preventDefault();
+  //Add Event from Modal
+  const handleSubmit = (e) => {
+    e.preventDefault();
     onEventAdded({
       title: title,
       start: moment(start).toDate(),
       end: moment(end).toDate(),
       color: color,
-      // user:user._id
     });
     onClose();
   };
@@ -43,7 +45,7 @@ const AddEventModal = ({ isOpen, onClose, onEventAdded, place, placeName }) => {
   return (
     <div className="">
       <Modal isOpen={isOpen} onRequestClose={onClose} style={customStyles}>
-        <form onSubmit={onSubmit} className="form">
+        <form onSubmit={handleSubmit} className="form">
           <input
             type="text"
             className="form-control"

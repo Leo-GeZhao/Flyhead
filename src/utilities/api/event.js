@@ -1,22 +1,22 @@
 import axios from "axios";
 const BASE_URL = "/api/events";
 
-export async function createEvent(data) {
+export const createEvent = async (data) => {
   return axios.post(`${BASE_URL}/create-event`, data);
-}
+};
 
-export function getEvents(data) {
+export const getEvents = async (data) => {
   return axios.post(`${BASE_URL}/events`, data);
-}
+};
 
-export function deleteEvent(id) {
+export const deleteEvent = async (id) => {
   return axios.delete(`${BASE_URL}/delete-event/${id}`);
-}
+};
 
-export function finishEvent(id) {
+export const finishEvent = async (id) => {
   return axios.put(`${BASE_URL}/finish-event/${id}`);
-}
+};
 
-export function editExpense(id, data) {
+export const editExpense = async (id, data) => {
   return axios.put(`${BASE_URL}/${id}/edit-expense`, data);
-}
+};

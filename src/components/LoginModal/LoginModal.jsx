@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
+
+//User Service
 import { login } from "../../utilities/service/user";
 
+//Modal Styles
 const customStyles = {
   content: {
     top: "40%",
@@ -16,12 +19,14 @@ const LoginModal = ({ isOpen, onClose, setUser }) => {
     password: "",
   });
 
-  function handleChange(evt) {
-    setCredentials({ ...credentials, [evt.target.name]: evt.target.value });
-  }
+  //Capture User Credentials
+  const handleChange = (e) => {
+    setCredentials({ ...credentials, [e.target.name]: e.target.value });
+  };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  //User Login
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     const user = await login(credentials);
     setUser(user);
     onClose();

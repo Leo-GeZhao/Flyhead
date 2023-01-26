@@ -1,14 +1,14 @@
 import axios from "axios";
 const BASE_URL = "/api/users";
 
-export async function signUp(data) {
+export const signUp = async (data) => {
   return axios.post(`${BASE_URL}`, data);
-}
+};
 
-export async function login(data) {
+export const login = async (data) => {
   return axios.post(`${BASE_URL}/login`, data);
-}
+};
 
-export async function googleSignIn(data) {
+export const googleSignIn = async (data) => {
   return axios.post(`${BASE_URL}/googleSignIn`, data);
-}
+};

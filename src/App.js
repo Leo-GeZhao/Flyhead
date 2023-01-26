@@ -1,24 +1,27 @@
 import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import SearchMap from "./pages/SearchMap/SearchMap";
+
+//Components
 import { Landing } from "./pages/Landing/Landing";
+import SearchMap from "./pages/SearchMap/SearchMap";
 import Event from "./pages/Event/Event";
 import Spending from "./pages/Spending/Spending";
-import { getUser } from "./utilities/service/user";
-import { logout } from "./utilities/service/user";
+
+//User Service
+import * as userService from "./utilities/service/user";
 
 const App = () => {
-  const [user, setUser] = useState(getUser);
+  const [user, setUser] = useState(userService.getUser);
   const [showGoogleSignIn, setShowGoogleSignIn] = useState(true);
 
   function handleLogOut() {
-    logout();
+    userService.logout();
     setUser(null);
     setShowGoogleSignIn(true);
   }
 
   return (
-    <main className="App">
+    <>
       <Routes>
         {!user ? (
           <Route
@@ -50,7 +53,7 @@ const App = () => {
           </>
         )}
       </Routes>
-    </main>
+    </>
   );
 };
 

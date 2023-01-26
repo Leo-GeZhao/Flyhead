@@ -1,9 +1,17 @@
-.fullCalender{
-    position: relative;
-    z-index: 0;
+.fullCalender {
+  position: relative;
+  z-index: 0;
 }
 
 .delete__btn {
-    margin-left: 7rem;
-    font-size: 0.9rem;
+  margin-left: 7rem;
+  font-size: 0.9rem;
+}
+
+.event {
+  flex: 1;
+  /* margin: 1.5rem;
+  display: grid;
+  grid-template-columns: 32% 63%;
+  gap: 5%; */
 }
