@@ -74,6 +74,8 @@ const Spending = ({ user }) => {
     [month, expense, totalExpense, foodExpense, hotelExpense, attractionExpense]
   );
 
+  console.log(events);
+
   return (
     <>
       <Header />

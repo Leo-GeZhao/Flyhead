@@ -80,7 +80,7 @@ eventSchema.statics.editExpense = async function (req) {
 
 //Get All Finished Event
 eventSchema.statics.getFinishedEvent = async function (req) {
-  const events = await this.find({ user: req.body.user, isFinishe: true });
+  const events = await this.find({ user: req.body.user, isFinish: true });
   return events;
 };
 
