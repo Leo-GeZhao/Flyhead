@@ -1,4 +1,4 @@
-//Return Date-Time
+//Return "Date-Time"
 export const eventDate = (data) => {
   const date = new Date(data).toDateString();
   const time = new Date(data).toLocaleTimeString();

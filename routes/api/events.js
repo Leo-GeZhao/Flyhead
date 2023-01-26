@@ -18,4 +18,7 @@ router.put("/finish-event/:id", eventCtrl.finish);
 //Edit finished Event Expense
 router.put("/:id/edit-expense", eventCtrl.edit);
 
+//Get All Finished Event
+router.post("/finished-events", eventCtrl.finishEvent);
+
 module.exports = router;

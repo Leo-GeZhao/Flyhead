@@ -1,47 +1,32 @@
 const User = require("../../models/user");
-const { createJWT } = require("../../helpers/auth");
-const bcrypt = require("bcrypt");
 
+//Create User
 async function create(req, res, next) {
   try {
-    const user = await User.create(req.body);
-    const token = createJWT(user);
-    res.json({ token });
+    const token = await User.createUser(req);
+    res.status(200).json(token);
   } catch (err) {
-    res.status(400).json(err);
+    res.status(400).json({ error: err });
   }
 }
 
-async function login(req, res) {
+//Login User
+async function login(req, res, next) {
   try {
-    const user = await User.findOne({ email: req.body.email });
-    if (!user) throw new Error();
-    const match = await bcrypt.compare(req.body.password, user.password);
-    if (!match) throw new Error();
-    const token = createJWT(user);
-    res.json({ token });
+    const token = await User.loginUser(req);
+    res.status(200).json(token);
   } catch (err) {
-    res.status(400).json("Bad Credentials");
+    res.status(400).json("Invalid Credentials");
   }
 }
 
-async function googleSignIn(req, res) {
+//SignUp&SignIn GoogleOauth
+async function googleSignIn(req, res, next) {
   try {
-    const user = await User.findOne({ email: req.body.email });
-    const token = createJWT(user);
-    if (!user) {
-      const newUser = await User();
-      newUser.name = req.body.name;
-      newUser.password = req.body.email;
-      newUser.email = req.body.email;
-      newUser.save();
-      const token = createJWT(newUser);
-      res.json({ token });
-    } else {
-      res.json({ token });
-    }
+    const token = await User.googleOauth(req);
+    res.status(200).json(token);
   } catch (err) {
-    res.status(400).json(err);
+    res.status(400).json({ error: err });
   }
 }
 

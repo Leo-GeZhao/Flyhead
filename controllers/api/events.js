@@ -1,61 +1,60 @@
 const Event = require("../../models/event");
-const ObjectId = require("mongodb").ObjectId;
 
+//Create Event
 async function create(req, res, next) {
   try {
-    const event = new Event();
-    event.title = req.body.title;
-    event.start = req.body.start;
-    event.end = req.body.end;
-    event.color = req.body.backgroundColor;
-    if (req.body.user) {
-      event.user = req.body.user;
-    } else {
-      event.user = req.body.extendedProps.user;
-    }
-    await event.save();
-    res.json(event);
+    const event = await Event.createEvent(req);
+    res.status(200).json(event);
   } catch (err) {
     res.status(400).json(err);
   }
 }
 
+//Get All Events
 async function index(req, res, next) {
   try {
-    const events = await Event.find({ user: req.body.user }).sort({
-      start: 1,
-    });
-    res.send(events);
+    const events = await Event.getAllEvents(req);
+    res.status(200).send(events);
   } catch (err) {
     res.status(400).json(err);
   }
 }
 
+//Delete Event
 async function deleteOne(req, res, next) {
   try {
-    await Event.deleteOne({ _id: ObjectId(req.params.id) });
-    res.json();
+    await Event.deleteEvent(req);
+    res.status(200).json();
   } catch (err) {
     res.status(400).json(err);
   }
 }
 
+//Toggle Unfinished Event to Finished Event
 async function finish(req, res, next) {
   try {
-    await Event.updateOne({ _id: req.params.id }, { $set: { isFinish: true } });
-    res.json();
+    await Event.setFinish(req);
+    res.status(200).json();
   } catch (err) {
     res.status(400).json(err);
   }
 }
 
+//Edit Expense for Finished Event
 async function edit(req, res, next) {
   try {
-    await Event.findOneAndUpdate(
-      { _id: ObjectId(req.params.id) },
-      { expense: req.body.expenseNum }
-    );
-    res.json();
+    await Event.editExpense(req);
+    res.status(200).json();
+  } catch (err) {
+    res.status(400).json(err);
+  }
+}
+
+//Get All Finished Event
+async function finishEvent(req, res, next) {
+  try {
+    const finishedEvent = await Event.getFinishedEvent(req);
+    res.status(200).json(finishedEvent);
   } catch (err) {
     res.status(400).json(err);
   }
@@ -67,4 +66,5 @@ module.exports = {
   delete: deleteOne,
   finish,
   edit,
+  finishEvent,
 };

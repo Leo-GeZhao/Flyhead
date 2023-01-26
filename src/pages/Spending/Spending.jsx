@@ -9,13 +9,14 @@ import Footer from "../../components/Footer/Footer";
 //Event API
 import * as eventApi from "../../utilities/api/event";
 
-//Event Service
+//Service
 import * as eventService from "../../utilities/service/event";
+import * as spendingService from "../../utilities/service/spending";
 
 import "./spending.css";
 
 const Spending = ({ user }) => {
-  const [month, setMonth] = useState("01");
+  const [month, setMonth] = useState(spendingService.getCurrentMonth);
   const [events, setEvents] = useState([]);
   const [expense, setExpense] = useState(null);
   const [totalExpense, setTotalExpense] = useState(null);
@@ -26,47 +27,47 @@ const Spending = ({ user }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalId, setModalId] = useState(null);
 
+  console.log(month);
+
   useEffect(
     function () {
       async function getSpending() {
-        const events = await eventApi.getEvents({ user: user._id });
-        const finishEvent = events.data.filter(
-          (events) => events.isFinish === true
-        );
+        //Get All Finished Events
+        const finishEvent = await eventApi.getFinishedEvents({
+          user: user._id,
+        });
 
-        const curMonthEvents = finishEvent.filter(
-          (event) => event.start.substring(5, 7) === month
+        //Get All Current Month Finiehde Events
+        const curMonthEvents = spendingService.currentMonthEvent(
+          finishEvent.data,
+          month
         );
         setEvents(curMonthEvents);
 
-        const totalExpense = curMonthEvents
-          .map((event) => event.expense)
-          .reduce((a, b) => a + b, 0);
+        //Get Current Month Total Expense
+        const totalExpense = spendingService.getExpense(curMonthEvents);
         setTotalExpense(totalExpense);
 
-        const curMonthFoodEvent = curMonthEvents.filter(
-          (event) => event.color === "#95bb72"
+        //Get Current Month Food Expense
+        const foodExpense = spendingService.getExpense(
+          curMonthEvents,
+          "#95bb72"
         );
-        const curMonthFoodExpense = curMonthFoodEvent
-          .map((event) => event.expense)
-          .reduce((a, b) => a + b, 0);
-        setFoodExpense(curMonthFoodExpense);
+        setFoodExpense(foodExpense);
 
-        const curMonthHotelEvent = curMonthEvents.filter(
-          (event) => event.color === "#da8ee7"
+        //Get Current Month Hotel Expense
+        const hotelExpense = spendingService.getExpense(
+          curMonthEvents,
+          "#da8ee7"
         );
-        const curMonthHotelExpense = curMonthHotelEvent
-          .map((event) => event.expense)
-          .reduce((a, b) => a + b, 0);
-        setHotelExpense(curMonthHotelExpense);
+        setHotelExpense(hotelExpense);
 
-        const curMonthAttractionEvent = curMonthEvents.filter(
-          (event) => event.color === "#6699CC"
+        //Get Current Month Attraction Expense
+        const attractionExpense = spendingService.getExpense(
+          curMonthEvents,
+          "#6699CC"
         );
-        const curMonthAttractionExpense = curMonthAttractionEvent
-          .map((event) => event.expense)
-          .reduce((a, b) => a + b, 0);
-        setAttractionExpense(curMonthAttractionExpense);
+        setAttractionExpense(attractionExpense);
       }
       getSpending();
     },

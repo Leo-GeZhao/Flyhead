@@ -20,3 +20,7 @@ export const finishEvent = async (id) => {
 export const editExpense = async (id, data) => {
   return axios.put(`${BASE_URL}/${id}/edit-expense`, data);
 };
+
+export const getFinishedEvents = async (data) => {
+  return axios.post(`${BASE_URL}/finished-events`, data);
+};
